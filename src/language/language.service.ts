@@ -61,4 +61,8 @@ export class LanguageService {
     }
     return { message: 'Đã tạo lộ trình mới', aiPath };
   }
+
+  async getLanguages() {
+  return this.languageRepo.find({ where: { isActive: true }, order: { name: 'ASC' } });
+}
 }

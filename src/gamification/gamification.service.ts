@@ -3,7 +3,7 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { User } from '../users/entities/user.entity';
 import { UserItems } from 'src/users/entities/UserItems.entity';
-import { UserDailyQuests } from 'src/users/entities/UserDailyQuests.entity';
+import { UserDailyQuest } from 'src/users/entities/UserDailyQuests.entity';
 
 @Injectable()
 export class GamificationService {
@@ -12,8 +12,8 @@ export class GamificationService {
     private readonly userRepo: Repository<User>,
     @InjectRepository(UserItems)
     private readonly userItemsRepo: Repository<UserItems>,
-    @InjectRepository(UserDailyQuests)
-    private readonly userDailyQuestsRepo: Repository<UserDailyQuests>,
+    @InjectRepository(UserDailyQuest)
+    private readonly userDailyQuestsRepo: Repository<UserDailyQuest>,
   ) {}
 
   async getStreak(userId: number) {

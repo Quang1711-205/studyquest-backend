@@ -13,6 +13,8 @@ import { LearningModule } from './learning/learning.module';
 import { AiModule } from './ai/ai.module';
 import { LanguageModule } from './language/language.module';
 import { QuestionModule } from './question/question.module';
+import { AvatarModule } from './avatar/avatar.module';
+import { LeaderboardModule } from './leaderboards/leaderboards.module';
 
 @Module({
   imports: [
@@ -37,6 +39,8 @@ import { QuestionModule } from './question/question.module';
     AiModule,
     LanguageModule,
     QuestionModule,
+    AvatarModule,
+    LeaderboardModule,
   ],
   controllers: [AppController],
   providers: [AppService],

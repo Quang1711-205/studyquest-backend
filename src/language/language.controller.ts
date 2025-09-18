@@ -1,10 +1,16 @@
-import { Controller, Post, Body } from '@nestjs/common';
+import { Controller, Post, Body, Get } from '@nestjs/common';
 import { LanguageService } from './language.service';
 import { LanguageSwitchDto } from './dto/languageSwitchDTO';
+
 
 @Controller('languages')
 export class LanguageController {
   constructor(private readonly languageService: LanguageService) {}
+
+  @Get()
+  getLanguages() {
+    return this.languageService.getLanguages();
+  }
 
   @Post('switch')
   switchLanguage(@Body() dto: LanguageSwitchDto) {

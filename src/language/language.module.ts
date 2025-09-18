@@ -10,11 +10,12 @@ import { AiService } from '../ai/ai.service';
 import { AiSuggestedPath } from 'src/ai/entities/ai-suggested-path.entity';
 import { AiGeneratedQuiz } from 'src/ai/entities/ai-generated-quiz.entity';
 import { User } from 'src/users/entities/user.entity';
+import { AiModule } from 'src/ai/ai.module';
 
 @Module({
-  imports: [TypeOrmModule.forFeature([Language, UserCourseProgress, Course, Lesson, AiSuggestedPath, AiGeneratedQuiz, User])],
+  imports: [TypeOrmModule.forFeature([Language, UserCourseProgress, Course, Lesson, AiSuggestedPath, AiGeneratedQuiz, User]), AiModule],
   controllers: [LanguageController],
-  providers: [LanguageService, AiService],
+  providers: [LanguageService],
   exports: [LanguageService],
 })
 export class LanguageModule {}

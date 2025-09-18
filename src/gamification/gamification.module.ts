@@ -4,10 +4,10 @@ import { GamificationController } from './gamification.controller';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { User } from '../users/entities/user.entity';
 import { UserItems } from 'src/users/entities/UserItems.entity';
-import { UserDailyQuests } from 'src/users/entities/UserDailyQuests.entity';
+import { UserDailyQuest } from 'src/users/entities/UserDailyQuests.entity';
 
 @Module({
-  imports: [TypeOrmModule.forFeature([User, UserItems, UserDailyQuests])],
+  imports: [TypeOrmModule.forFeature([User, UserItems, UserDailyQuest])],
   controllers: [GamificationController],
   providers: [GamificationService],
 })

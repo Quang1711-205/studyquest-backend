@@ -1,4 +1,4 @@
-import { Entity, Column, PrimaryGeneratedColumn, ManyToOne, JoinColumn } from 'typeorm';
+import { Entity, Column, PrimaryGeneratedColumn, ManyToOne, JoinColumn, CreateDateColumn } from 'typeorm';
 import { User } from '../../users/entities/user.entity';
 import { Lesson } from 'src/lessons/entities/lesson.entity';
 
@@ -7,37 +7,42 @@ export class UserLessonProgress {
   @PrimaryGeneratedColumn('increment')
   id: number;
 
-  @Column({ type: 'bigint', name: 'user_id' })
+  @Column({ name: 'user_id' })
   userId: number;
 
-  @Column({ type: 'bigint', name: 'lesson_id' })
+  @Column({ name: 'lesson_id' })
   lessonId: number;
 
-  @Column({ type: 'enum', enum: ['locked', 'available', 'started', 'completed', 'mastered'], default: 'locked' })
-  status: string;
+  @Column({ 
+    type: 'enum', 
+    enum: ['locked', 'available', 'started', 'completed', 'mastered'], 
+    default: 'locked' 
+  })
+  status: 'locked' | 'available' | 'started' | 'completed' | 'mastered';
 
-  @Column({ type: 'int', default: 0, name: 'best_score' })
+  @Column({ name: 'best_score', default: 0 })
   bestScore: number;
 
-  @Column({ type: 'int', default: 0 })
+  @Column({ default: 0 })
   attempts: number;
 
-  @Column({ type: 'int', default: 0, name: 'total_time_seconds' })
+  @Column({ name: 'total_time_seconds', default: 0 })
   totalTimeSeconds: number;
 
-  @Column({ type: 'int', default: 0 })
+  @Column({ name: 'xp_earned', default: 0 })
   xpEarned: number;
 
-  @Column({ type: 'timestamp', nullable: true, name: 'last_attempt_at' })
-  lastAttemptAt: Date;
+  @Column({ name: 'last_attempt_at', nullable: true })
+  lastAttemptAt?: Date;
 
-  @Column({ type: 'timestamp', nullable: true, name: 'completed_at' })
-  completedAt: Date;
+  @Column({ name: 'completed_at', nullable: true })
+  completedAt?: Date;
 
-  @Column({ type: 'timestamp', default: () => 'CURRENT_TIMESTAMP', name: 'created_at' })
+  @CreateDateColumn({ name: 'created_at' })
   createdAt: Date;
 
-  @ManyToOne(() => User)
+  // Relations
+  @ManyToOne(() => User, { onDelete: 'CASCADE' })
   @JoinColumn({ name: 'user_id' })
   user: User;
 
